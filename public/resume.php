@@ -1,42 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <!-- meta data goes here -->
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <meta charset="UTF-8">
-       <title>Resume</title>
-       <meta name="description" content="This is a awesome resume page">
-       <meta name="keywords" content="resume, awesome, programmer, geek squad, robots, jobs
-       ">
-       <link rel="shortcut icon" href="https://zeyeland.com/images/robot.gif" />
-       <link rel="stylesheet" type="text/css" href="./dist/css/main.min.css">
-    </head>
-    <body>
-        <header>
-            <a id="toggleMenu">Menu<a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="resume.html">Resume</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+<?php
+$meta=[];
+$meta['title']='Bob\'s Resume';
+$meta['description']='Bob page';
 
 
-        
-            <h1 class="center">First Name Last Name</h1>   
 
-          
-            <div class="center">
-            <a href="https://www.linkedin.com/in/shakirze/" target="_blank" rel="noopener">LinkedIn</a>
-            &#x25CF;
-            Some City, IL
-            <a href="https://github.com/eyeland" target="_blank" rel="noopener">Github</a>
-            &#x25CF;
-            Some City, IL
-            </div>
-        <main >
+$content=<<<EOT
+                <h1 class="center"> NAME Name</h1>
                 <h2 class="center">Senior Ameutar Mathematician</h2>
                 <p class="center">  I like to build stuff using math.</p>
 
@@ -110,21 +80,6 @@
                     <h3>MicroTrain Technologies - Chicago, IL <span>2018</span></h3>
                     <h4>Agile Full Stack Web and Hybrid Mobile Application Development</h4>
                 </section>
-        </main>
-        <script>
+EOT;
 
-                var toggleMenu = document.getElementById('toggleMenu');
-                var nav = document.querySelector('nav');
-                toggleMenu.addEventListener(
-                  'click',
-                  function(){
-                    if(nav.style.display=='block'){
-                      nav.style.display='none';
-                    }else{
-                      nav.style.display='block';
-                    }
-                  }
-                );
-        </script>
-    </body>
-</html>
+require '../core/layout.php';
