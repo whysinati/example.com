@@ -100,7 +100,15 @@ class Validate{
 }
 */
 
-require '../core/About/src/Validation/Validate.php';
+//require '../core/About/src/Validation/Validate.php';
+require '../core/processContactForm.php';
+
+$meta=[];
+$meta['title']="Contact Me";
+$meta['description']="My contact page";
+$meta['keywords']=false;
+
+/*
 //Declare namespaces
 use About\Validation;
 
@@ -114,6 +122,8 @@ $args = [
 ];
 
 $input = filter_input_array(INPUT_POST, $args);
+
+$message = null;
 
 if(!empty($input)){
 
@@ -144,9 +154,10 @@ if(!empty($input)){
     }else{
         $message = "<div class=\"message-error\">Your form has errors!</div>";
     }
-}
-?>
+}*/
+// was a closing php tag here
 
+/*
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -170,30 +181,31 @@ if(!empty($input)){
     </header>
     
     <main>
+*/
+$content=<<<EOT
       <h1>Contact Me - YOUR-NAME</h1>
-
-      <?php echo (!empty($message)?$message:null); ?>
-
+      {$message}
+      
       <form action="contact.php" method="POST">
         
         <input type="hidden" name="subject" value="New submission!">
         
         <div>
           <label for="name">Name</label>
-          <input id="name" type="text" name="name" value="<?php echo $valid->userInput('name'); ?>">
-          <div class="text-error"><?php echo $valid->error('name'); ?></div>
+          <input id="name" type="text" name="name" value="{$valid->userInput('name')}">
+          <div class="text-error">{$valid->error('name')}</div>
         </div>
 
         <div>
           <label for="email">Email</label>
-          <input id="email" type="text" name="email" value="<?php echo $valid->userInput('email'); ?>">
-          <div class="text-error"><?php echo $valid->error('email'); ?></div>
+          <input id="email" type="text" name="email" value="{$valid->userInput('email')}">
+          <div class="text-error">{$valid->error('email')}</div>
         </div>
 
         <div>
           <label for="message">Message</label>
-          <textarea id="message" name="message"><?php echo $valid->userInput('message'); ?></textarea>
-          <div class="text-error"><?php echo $valid->error('message'); ?></div>
+          <textarea id="message" name="message">{$valid->userInput('message')}</textarea>
+          <div class="text-error">{$valid->error('message')}</div>
         </div>
 
         <div>
@@ -201,7 +213,11 @@ if(!empty($input)){
         </div>
 
       </form>
-    </main>
+EOT;
+
+require '../core/layout.php';
+/*
+      </main>
     
     <script>
         var toggleMenu = document.getElementById('toggleMenu');
@@ -219,8 +235,8 @@ if(!empty($input)){
       </script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
+*/
+/* <!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Name Namey Name - Contact</title>
@@ -288,4 +304,4 @@ if(!empty($input)){
         </script>
     </body>
 </html>
--->
+*/
