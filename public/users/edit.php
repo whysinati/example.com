@@ -8,6 +8,7 @@ use About\Validation;
 
 $valid = new About\Validation\Validate();
 
+
 $meta=[];
 
 #$meta['description']="My edit my blog file";
@@ -17,10 +18,10 @@ $message=null;
 
 $args = [
     'id'=>FILTER_SANITIZE_STRING, //strips HTML
-    'title'=>FILTER_SANITIZE_STRING, //strips HTML
-    'meta_description'=>FILTER_SANITIZE_STRING, //strips HTML
-    'meta_keywords'=>FILTER_SANITIZE_STRING, //strips HTML
-    'body'=>FILTER_UNSAFE_RAW //NULL FILTER
+    'email'=>FILTER_SANITIZE_EMAIL,
+    'first_name'=>FILTER_SANITIZE_STRING, //strips HTML
+    'last_name'=>FILTER_SANITIZE_STRING, //strips HTML
+    #'body'=>FILTER_UNSAFE_RAW //NULL FILTER
 ];
 
 $input = filter_input_array(INPUT_POST, $args);
@@ -29,13 +30,20 @@ $input = filter_input_array(INPUT_POST, $args);
 if(!empty($input)){
 
     $valid->$validation = [
-        'title'=>[[
+        'email'=>[[
+            'rule'=>'email',
+            'message'=>'Please enter a valid email.'
+        ],[
             'rule'=>'notEmpty',
-            'message'=>'Please enter a title.'
+            'message'=>'Please enter your email.'
         ]],
-        'body'=>[[
+        'first_name'=>[[
             'rule'=>'notEmpty',
-            'body'=>'Please enter blog text.'
+            'first_name'=>'Please enter your first name.'
+        ]],
+        'last_name'=>[[
+            'rule'=>'notEmpty',
+            'last_name'=>'Please enter your last name.'
         ]]
     ];
 
@@ -48,21 +56,21 @@ if(!empty($input)){
         $input = array_map('trim', $input);
 
         //Allow only whitelisted HTML
-        $input['body'] = cleanHTML($input['body']);
+        #$input['last_name'] = cleanHTML($input['last_name']);
 
         //Create the slug
-        $slug = slug($input['title']);
+        #$slug = slug($input['email']);
 
         //Sanitized insert
-        $sql = 'UPDATE users SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords, WHERE id=:id';
+        $sql = 'UPDATE users SET email=:email, last_name=:last_name, first_name=:first_name WHERE id=:id';
         
         if($pdo->prepare($sql)->execute([
             'id'=>$input['id'],
-            'title'=>$input['title'],
-            'slug'=>$slug,
-            'body'=>$input['body'],
-            'meta_description'=>$input['meta_description'],
-            'meta_keywords'=>$input['meta_keywords']
+            'email'=>$input['email'],
+            #'slug'=>$slug,
+            'first_name'=>$input['first_name'],
+            'last_name'=>$input['last_name'],
+            #'meta_keywords'=>$input['meta_keywords']
         ])){
             header('LOCATION:/users');
         }else{
@@ -93,22 +101,22 @@ $row = $stmt->fetch();
 
 $fields=[];
 $fields['id']=$row['id'];
-$fields['title']=$row['title'];
-$fields['body']=$row['body'];
-$fields['meta_description']=$row['meta_description'];
-$fields['meta_keywords']=$row['meta_keywords'];
+$fields['email']=$row['email'];
+$fields['first_name']=$row['first_name'];
+$fields['last_name']=$row['last_name'];
+#$fields['meta_keywords']=$row['meta_keywords'];
 
-$meta['title']="Edit: " . $fields['title'];
 
 if(!empty($input)){
-    $fields['id']=$valid->userInput('id');
-    $fields['title']=$valid->userInput('title');
-    $fields['body']=$valid->userInput('body');
-    $fields['meta_description']=$valid->userInput('meta_description');
-    $fields['meta_keywords']=$valid->userInput('meta_keywords');
+    #$fields['id']=$valid->userInput('id');
+    $fields['email']=$valid->userInput('email');
+    $fields['first_name']=$valid->userInput('first_name');
+    $fields['last_name']=$valid->userInput('last_name');
+    #$fields['meta_keywords']=$valid->userInput('meta_keywords');
 }
 
-
+$meta['title']='Edit:' .$fields['email'];
+#$meta['title']="Edit: " . $fields['title'];
 
 $content = <<<EOT
 <h1>{$meta['title']}</h1>
@@ -118,26 +126,22 @@ $content = <<<EOT
 <input name="id" type="hidden" class="form-control" value="{$fields['id']}">
 
 <div class="form-group">
-    <label for="title">Title</label>
-    <input id="title" name="title" type="text" class="form-control" value="{$fields['title']}">
-    <div class="text-danger">{$valid->error('title')}</div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="text" class="form-control" value="{$fields['email']}">
+    <div class="text-danger">{$valid->error('email')}</div>
 </div>
 
 <div class="form-group">
-    <label for="body">Body</label>
-    <textarea id="body" name="body" rows="8" class="form-control">{$fields['body']}</textarea>
+    <label for="first_name">First Name</label>
+    <textarea id="first_name" name="first_name" rows="1" class="form-control">{$fields['first_name']}</textarea>
 </div>
 
 <div class="row">
     <div class="form-group col-md-6">
-        <label for="meta_description">Description</label>
-        <textarea id="meta_description" name="meta_description" rows="2" class="form-control">{$fields['meta_description']}</textarea>
+        <label for="last_name">Last Name</label>
+        <textarea id="last_name" name="last_name" rows="1" class="form-control">{$fields['last_name']}</textarea>
     </div>
 
-    <div class="form-group col-md-6">
-        <label for="meta_keywords">Keywords</label>
-        <textarea id="meta_keywords" name="meta_keywords" rows="2" class="form-control">{$fields['meta_keywords']}</textarea>
-    </div>
 </div>
 
 <div class="form-group">
