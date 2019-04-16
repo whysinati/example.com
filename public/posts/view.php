@@ -16,8 +16,21 @@ $stmt = $pdo->prepare('SELECT * FROM posts WHERE slug = ?');
 $stmt->execute([$slug]);
 
 $row = $stmt->fetch();
-$content .= "<h1>{$row['title']}</h1>";
-$content .= $row['body'];
+
+$meta=[];
+$meta['title']=$row['title'];
+$meta['description']="blog posts";#$row['meta-description'];
+$meta['keywords']=false;
+
+$content=<<<EOT
+<h1>{$row['title']}</h1>
+{$row['body']}
+
+<hr>
+<div>
+    <a href="/posts/edit.php?id={$row['id']}">Edit</a>
+</div>
+EOT;
 
 #echo $content;
 require '../../core/layout.php';

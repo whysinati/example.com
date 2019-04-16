@@ -54,7 +54,7 @@ if(!empty($input)){
         $slug = slug($input['title']);
 
         //Sanitized insert
-        $sql = 'UPDATE posts SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords, WHERE id=:id';
+        $sql = 'UPDATE users SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords, WHERE id=:id';
         
         if($pdo->prepare($sql)->execute([
             'id'=>$input['id'],
@@ -64,7 +64,7 @@ if(!empty($input)){
             'meta_description'=>$input['meta_description'],
             'meta_keywords'=>$input['meta_keywords']
         ])){
-            header('LOCATION:/posts');
+            header('LOCATION:/users');
         }else{
             $message = 'Something bad happened';
         }
@@ -83,7 +83,7 @@ $args = [
 
 $getParams = filter_input_array(INPUT_GET, $args);
 
-$sql = 'SELECT * FROM posts WHERE id=:id';
+$sql = 'SELECT * FROM users WHERE id=:id';
 $stmt = $pdo->prepare($sql);
 $stmt->execute([
     'id'=>$getParams['id']
@@ -150,7 +150,7 @@ $content = <<<EOT
     <a
         class="text-danger" 
         onclick="return confirm('Are you sure?')"
-        href="/posts/delete.php?id={$fields['id']}">
+        href="/users/delete.php?id={$fields['id']}">
         <i class="fas fa-trash-alt"></i>
         Delete
     </a>

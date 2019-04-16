@@ -35,13 +35,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home</a>
+          <a class="nav-link" href="/index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="resume.php">Resume</a>
+          <a class="nav-link" href="/resume.php">Resume</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contact</a>
+          <a class="nav-link" href="/posts">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact.php">Contact</a>
         </li>
       </ul>
       <!--<form class="form-inline mt-2 mt-md-0">
