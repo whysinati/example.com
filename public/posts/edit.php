@@ -54,7 +54,7 @@ if(!empty($input)){
         $slug = slug($input['title']);
 
         //Sanitized insert
-        $sql = 'UPDATE posts SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords, WHERE id=:id';
+        $sql = 'UPDATE posts SET title=:title, slug=:slug, body=:body, meta_description=:meta_description, meta_keywords=:meta_keywords WHERE id=:id';
         
         if($pdo->prepare($sql)->execute([
             'id'=>$input['id'],
