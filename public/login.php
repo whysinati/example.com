@@ -1,8 +1,10 @@
 <?php
 require '../core/session.php';
 require '../core/db_connect.php';
+$message=NULL;
 
 #use About\Validation;
+#$valid = new About\Validation\Validate();
 
 $input = filter_input_array(INPUT_POST, [
     'password'=>FILTER_UNSAFE_RAW,
@@ -11,7 +13,8 @@ $input = filter_input_array(INPUT_POST, [
 
 if(!empty($input)){
 
-    $hash = password_hash($input['password'], PASSWORD_DEFAULT);
+    $input = array_map('trim', $input);
+    #$hash = password_hash($input['password'], PASSWORD_DEFAULT);
     
     $sql='SELECT id, hash FROM users WHERE email=:email';
 
@@ -55,6 +58,7 @@ $goto=!empty($_GET['goto'])?$_GET['goto']:'/';
 $content=<<<EOT
 
 <h1>{$meta['title']}</h1>
+{$message}
 <form method="post" autocomplete="off">
 
     <div class="form-group">
@@ -64,7 +68,6 @@ $content=<<<EOT
         id="email" 
         name="email" 
         type="email"
-
     >
     </div>
     

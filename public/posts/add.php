@@ -62,12 +62,21 @@ if(!empty($input)){
     */
         //Sanitized insert
         #$sql = 'INSERT INTO posts SET id=uuid(), title=?, slug=?, body=?';
-        $sql = 'INSERT INTO posts SET id=uuid(), title=:title, slug=:slug, body=:body';
+        $sql = 'INSERT INTO 
+            posts 
+        SET 
+            id=uuid(), 
+            title=:title, 
+            slug=:slug, 
+            body=:body,
+            user_id=:user_id
+            ';
     
         if($pdo->prepare($sql)->execute([
-            $input['title'],
-            $slug,
-            $input['body']
+            'title'=>$input['title'],
+            'slug'=>$slug,
+            'body'=>$input['body'],
+            'user_id'=>$_SESSION['user']['id']
         ])){
         header('LOCATION:/posts');
         }else{
