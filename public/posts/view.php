@@ -23,12 +23,14 @@ $meta['title']=$row['title'];
 $meta['description']="blog posts";#$row['meta-description'];
 $meta['keywords']=false;
 
+$hide=empty($_SESSION['user']['id'])?"hidden":NULL;
+
 $content=<<<EOT
 <h1>{$row['title']}</h1>
 {$row['body']}
 
 <hr>
-<div class="row">
+<div {$hide} class="row">
     <div>
         <a class="btn btn-primary" href="/posts/edit.php?id={$row['id']}">
             <i class="fas fa-pen-square"></i>

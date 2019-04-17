@@ -17,12 +17,14 @@ while($row = $stmt->fetch()){
         "{$row['title']}</a>";
 }
 
+$hide=empty($_SESSION['user']['id'])?"hidden":NULL;
+
 $content=<<<EOT
 <h1>My Blog</h1>
 <div class=\"list-group\">{$items}</div>
 <hr>
 <div>
-    <a class="btn btn-primary" href="\posts\add.php">
+    <a {$hide} class="btn btn-primary" href="\posts\add.php">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Add
     </a>
