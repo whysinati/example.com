@@ -1,4 +1,12 @@
 <?php
+
+require '../core/session.php';
+
+//$_SESSION=[]; //
+
+//$_SESSION['user'] = [];
+//$_SESSION['user']['id'] = 12345; //
+
 $meta=[];
 $meta['title']='Bob Smith';
 $meta['description']='Bob page';

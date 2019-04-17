@@ -1,9 +1,12 @@
 <?php
+require '../../core/session.php';
 require '../../core/functions.php';
 require '../../config/keys.php';
 require '../../core/db_connect.php';
 #require '../../core/processContactForm.php'; //make a copy and edit to meet needs of add.php
 require '../../core/About/src/Validation/Validate.php'; //added this
+
+checkSession();
 
 use About\Validation;
 

@@ -1,4 +1,7 @@
 <?php
+
+require '../core/session.php';
+
 $meta=[];
 $meta['title']='Bob\'s Resume';
 $meta['description']='Bob page';

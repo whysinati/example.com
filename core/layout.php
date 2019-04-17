@@ -49,6 +49,15 @@
         <li class="nav-item">
           <a class="nav-link" href="/contact.php">Contact</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login.php">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout.php">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register.php">Register</a>
+        </li>
       </ul>
       <!--<form class="form-inline mt-2 mt-md-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

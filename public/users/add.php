@@ -1,8 +1,11 @@
 <?php
+require '../../core/session.php';
 require '../../core/functions.php';
 require '../../config/keys.php';
 require '../../core/db_connect.php';
 require '../../core/About/src/Validation/Validate.php';
+
+checkSession();
 
 use About\Validation;
 
@@ -30,8 +33,11 @@ if(!empty($input)){
 
     $valid->validation = [
         'email'=>[[
-                'rule'=>'notEmpty',
+                'rule'=>'email',
                 'message'=>'Please enter a valid email.'
+            ],[
+                'rule'=>'notEmpty',
+                'message'=>'Please user\'s email.'
             ]],
         'first_name'=>[[
             'rule'=>'notEmpty',
@@ -89,13 +95,13 @@ $content = <<<EOT
 <div class="row">
     <div class="form-group col-md-6">
         <label for="first_name">First Name</label>
-        <textarea id="first_name" name="first_name" rows="2" class="form-control">{$valid->userInput('first_name')}</textarea>
+        <textarea id="first_name" name="first_name" rows="1" class="form-control">{$valid->userInput('first_name')}</textarea>
         <div class="text-danger">{$valid->error('first_name')}</div>
         </div>
 
     <div class="form-group col-md-6">
         <label for="last_name">Last Name</label>
-        <textarea id="last_name" name="last_name" rows="2" class="form-control">{$valid->userInput('last_name')}</textarea>
+        <textarea id="last_name" name="last_name" rows="1" class="form-control">{$valid->userInput('last_name')}</textarea>
         <div class="text-danger">{$valid->error('last_name')}</div>
     </div>
 </div>

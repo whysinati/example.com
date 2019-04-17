@@ -1,6 +1,8 @@
 <?php
-
+require '../../core/session.php';
 require '../../core/db_connect.php';
+
+checkSession();
 
 $content=null;
 $stmt = $pdo->query("SELECT * FROM users");
@@ -23,7 +25,10 @@ $content=<<<EOT
 <div class=\"list-group\">{$items}</div>
 <hr>
 <div>
-    <a href="\users\add.php">Add</a>
+    <a class="btn btn-primary" href="\users\add.php">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Add
+    </a>
 </div>
 
 EOT;

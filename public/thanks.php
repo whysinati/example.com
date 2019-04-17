@@ -1,4 +1,6 @@
 <?php
+require '../core/session.php';
+
 $meta=[];
 $meta['title']='Thank you!';
 $meta['description']='form submit';

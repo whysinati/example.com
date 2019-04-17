@@ -1,5 +1,8 @@
 <?php
+require '../../core/session.php';
 include '../../core/db_connect.php';
+
+checkSession();
 
 //$slug = "'{$_GET['slug']}'";
 //$slug="(SELECT slug FROM posts WHERE slug = 'hello')";

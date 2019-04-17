@@ -1,5 +1,5 @@
 <?php
-
+require '../../core/session.php';
 require '../../core/db_connect.php';
 
 $content=null;

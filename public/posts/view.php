@@ -1,4 +1,5 @@
 <?php
+require '../../core/session.php';
 include '../../core/db_connect.php';
 
 //$slug = "'{$_GET['slug']}'";
@@ -27,9 +28,22 @@ $content=<<<EOT
 {$row['body']}
 
 <hr>
-<div>
-    <a href="/posts/edit.php?id={$row['id']}">Edit</a>
+<div class="row">
+    <div>
+        <a class="btn btn-primary" href="/posts/edit.php?id={$row['id']}">
+            <i class="fas fa-pen-square"></i>
+            Edit
+        </a>
+    </div>
+
+    <div>
+        <a class="btn btn-primary" href="\posts\add.php">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add New
+        </a>
+    </div>
 </div>
+
 EOT;
 
 #echo $content;

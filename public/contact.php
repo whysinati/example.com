@@ -1,4 +1,7 @@
 <?php
+
+require '../core/session.php';
+
 /*
 //Create a RegEx pattern to determine the validity of the user submitted email
 // - allow up to two strings with dot concatenation any letter, any case any number with _- before the @
