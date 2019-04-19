@@ -1,6 +1,6 @@
 <?php
 
-require '../config/keys.php';
+#require '../config/keys.php';
 
 $host = '127.0.0.1';
 $db   = 'bootcamp';
