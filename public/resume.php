@@ -1,6 +1,6 @@
 <?php
 
-require '../core/session.php';
+require '../core/bootstrap.php';
 
 $meta=[];
 $meta['title']='Bob\'s Resume';

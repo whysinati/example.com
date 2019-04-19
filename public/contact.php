@@ -1,6 +1,6 @@
 <?php
 
-require '../core/session.php';
+require '../core/bootstrap.php';
 
 /*
 //Create a RegEx pattern to determine the validity of the user submitted email
