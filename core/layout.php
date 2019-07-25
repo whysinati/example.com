@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <!-- <title><Contact Me - YOUR-NAME</title> -->
+    
     <title><?php echo $meta['title']; ?></title>
 
     <?php if(!empty($meta['description'])): ?>
@@ -15,7 +15,7 @@
 
     <style>
         body{
-            padding-top: 60px;
+            padding-top: 80px;
         }
     </style>
 
@@ -27,8 +27,11 @@
   <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">
-    <i class="fab fa-affiliatetheme"></i>
-    Trumpet</a>
+    <!-- <i class="fab fa-affiliatetheme"></i> -->
+    <h2 class="fas fa-hand-holding-heart"></h2>
+    <?php $filename=$_SERVER['REQUEST_URI'];
+      $navtitle=ucfirst(basename($filename, '.php'));
+      echo $navtitle;?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,7 +47,7 @@
           <a class="nav-link" href="/posts">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/contact.php">Contact</a>
+          <a class="nav-link disabled" href="/contact.php">Contact (TBA)</a>
         </li>
 
         <?php if(!empty($_SESSION['user']['id'])): ?>
